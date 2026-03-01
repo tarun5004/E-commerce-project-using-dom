@@ -1,0 +1,233 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: #0f0f0f;
+  color: #f0f0f0;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+}
+
+/* ============ NAVBAR ============ */
+
+nav {
+  display: flex;
+  padding: 0 40px;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  background-color: #1a1a2e;
+  border-bottom: 2px solid #e94560;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav > h1 {
+  font-size: 22px;
+  color: #e94560;
+  letter-spacing: 1px;
+}
+
+nav .links {
+  display: flex;
+  gap: 40px;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.links p {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.links p:hover {
+  background-color: #e94560;
+  color: white;
+}
+
+#cart-count {
+  background-color: #e94560;
+  color: white;
+  font-size: 12px;
+  padding: 2px 7px;
+  border-radius: 50%;
+  margin-left: 4px;
+}
+
+.icon {
+  display: flex;
+  gap: 20px;
+  font-size: 22px;
+}
+
+.icon i {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.icon i:hover {
+  color: #e94560;
+}
+
+/* ============ PRODUCTS SECTION ============ */
+
+section {
+  padding: 40px 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  align-items: stretch;
+  justify-content: center;
+}
+
+/* ============ PRODUCT CARD ============ */
+
+.product-card {
+  border-radius: 16px;
+  padding: 20px;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #16213e;
+  border: 1px solid #1a1a3e;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(233, 69, 96, 0.2);
+}
+
+.img {
+  height: 220px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.img img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.4s;
+}
+
+.product-card:hover .img img {
+  transform: scale(1.05);
+}
+
+/* ============ CARD CONTENT ============ */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-grow: 1;
+}
+
+.content h3 {
+  font-size: 14px;
+  font-weight: 400;
+  color: #aaa;
+}
+
+.content h3 span {
+  color: #f0f0f0;
+  font-weight: 600;
+}
+
+.content .price {
+  font-size: 20px;
+  color: #e94560;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+/* ============ BUTTONS ============ */
+
+.btns {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.btns button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: opacity 0.3s, transform 0.2s;
+}
+
+.btns button:hover {
+  opacity: 0.85;
+  transform: scale(1.03);
+}
+
+.btn-remove {
+  background-color: #c0392b;
+}
+
+.btn-add {
+  background-color: #27ae60;
+}
+
+/* ============ CART SCREEN ============ */
+
+.cart-screen {
+  top: 60px;
+  left: 0;
+  position: fixed;
+  display: none;
+  gap: 25px;
+  overflow-y: auto;
+  padding: 40px 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  min-height: calc(100vh - 60px);
+  width: 100%;
+  background-color: #0a0a1a;
+  z-index: 50;
+}
+
+.cart-screen .empty-msg {
+  color: #555;
+  font-size: 28px;
+  text-align: center;
+  width: 100%;
+  margin-top: 80px;
+}
+
+/* ============ SCROLLBAR ============ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f0f0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e94560;
+  border-radius: 10px;
+}
