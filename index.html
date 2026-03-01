@@ -1,40 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
-    <title>E-Commerce Store</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <main>
-      <!-- NAVBAR -->
-      <nav>
-        <h1><i class="ri-store-2-line"></i> E-Commerce</h1>
-        <div class="links">
-          <p id="home">Home</p>
-          <p>Products</p>
-          <p id="cart">Cart <span id="cart-count">0</span></p>
-        </div>
-        <div class="icon">
-          <i class="ri-shopping-cart-line"></i>
-          <i class="ri-user-fill"></i>
-        </div>
-      </nav>
-
-      <!-- PRODUCTS SECTION — JS will fill this -->
-      <section></section>
-
-      <!-- CART SCREEN — hidden by default -->
-      <div class="cart-screen">
-        <h2 class="empty-msg">No Items Added <i class="ri-shopping-bag-line"></i></h2>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce Store Using Dom</title>
+  <link
+  href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+  rel="stylesheet"
+/>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <!-- nav bar -->
+    <nav>
+      <h1>E-Commerce Store</h1>
+      <div class="links">
+        <p>Home</p>
+        <p>Products</p>
+        <p>Cart</p>
       </div>
-    </main>
+      <div class="icons">
+        <i class="ri-shopping-cart-line"></i>
+        <i class="ri-user-3-line"></i>
+      </div>
+    </nav>
+<!-- product card section  -->
+    <section>
+      <div class="product-card">
+        <div class="img">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+        </div>
+<!-- product content section -->
+        <div class="content">
+          <h3>Name:</h3>
+          <h3>Price:</h3>
+          <h3>Category:</h3>
+          <h3>Description:</h3>
+        </div>
+        <div class="btns">
+          <button>Add to Cart</button>
+          <button>Remove from Cart</button>
+        </div>
 
-    <script src="script.js"></script>
-  </body>
+      </div>
+    </section>
+  </main>
+
+
+
+  <script src="script.js"></script>
+</body>
 </html>
