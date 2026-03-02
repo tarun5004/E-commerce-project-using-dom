@@ -28,9 +28,14 @@ nav{
 }
 
 section{
-  padding: 20px;
+  padding: 40px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
+
 .links{
   display: flex;
   gap: 40px;
