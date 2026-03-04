@@ -1,8 +1,8 @@
 // ========================================
-// 1. DUMMY DATA — Products ka array
+// 1. DUMMY DATA - Products ka array
 // ========================================
 
-let productsData = [
+const productsData = [
     {
     productname: "iPhone 16 Pro Max",
     category: "Electronics",
@@ -55,9 +55,7 @@ let productsData = [
     productname: "Apple Watch Series 10",
     category: "Wearables",
     price: 429,
-    imageurls: [
-    "https://dummyimage.com/400x400/20c997/fff.png&text=AppleWatch",
-    ],
+    imageurls: ["https://dummyimage.com/400x400/20c997/fff.png&text=AppleWatch"],
     },
     {
     productname: "DJI Mini 4 Pro",
@@ -87,9 +85,7 @@ let productsData = [
     productname: "Patagonia Nano Puff",
     category: "Clothing",
     price: 239,
-    imageurls: [
-    "https://dummyimage.com/400x400/198754/fff.png&text=Patagonia",
-    ],
+    imageurls: ["https://dummyimage.com/400x400/198754/fff.png&text=Patagonia"],
     },
     {
     productname: "Kindle Paperwhite",
@@ -120,40 +116,118 @@ let productsData = [
     category: "Accessories",
     price: 149,
     imageurls: ["https://dummyimage.com/400x400/28a745/fff.png&text=Oakley"],
-},];
+    },
+];
 
-let cartData = [];
+const CART_STORAGE_KEY = "domECommerceCart";
 
-let allProducts = "";
-productsData.forEach(function(elem, index) {
-    allProducts += `<div class="product-card">
-        <div class="img">
-            <img
-            src="${elem.imageurls[0]}"
-            alt=""
-            />
-        </div>
+const section = document.querySelector("section");
+const cartCountElement = document.querySelector("#cart-count");
 
-        <div class="content">
+let cartData = loadCartData();
+
+function loadCartData() {
+    try {
+    const storedCart = localStorage.getItem(CART_STORAGE_KEY);
+    return storedCart ? JSON.parse(storedCart) : [];
+    } catch (error) {
+    console.error("Could not parse cart data:", error);
+    return [];
+    }
+}
+
+function saveCartData() {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartData));
+}
+
+function updateCartCount() {
+    const totalQuantity = cartData.reduce((sum, item) => sum + item.quantity, 0);
+    if (cartCountElement) {
+    cartCountElement.textContent = totalQuantity;
+    }
+}
+
+function renderProducts() {
+    const allProducts = productsData
+    .map(
+        (elem, index) => `
+        <div class="product-card">
+            <div class="img">
+            <img src="${elem.imageurls[0]}" alt="${elem.productname}" />
+            </div>
+
+            <div class="content">
             <h3>Name: <span>${elem.productname}</span></h3>
             <h3>Category: ${elem.category}</h3>
-            <h3>Price:m <span>$${elem.price}</span></h3>
-        </div>
+            <h3>Price: <span>$${elem.price}</span></h3>
+            </div>
 
-        <div class="btns">
-            <button>Remove</button>
-            <button id="${index}">Add to Cart</button>
+            <div class="btns">
+            <button data-index="${index}" data-action="remove">
+                Remove
+            </button>
+            <button data-index="${index}" data-action="add-to-cart">
+                Add to Cart
+            </button>
+            </div>
         </div>
-        </div>`;  });
+        `
+    )
+    .join("");
 
-    let section = document.querySelector("section");
     section.innerHTML = allProducts;
+}
 
-    section.addEventListener("click", function(e){
-        if(
-            e.target.tagName === "BUTTON" &&
-            e.target.textContent == "Add to Cart"
-        ){
-            console.log("Product added to cart:", productsData[e.target.id]);
-        }
-    })
+renderProducts();
+updateCartCount();
+
+// Event Delegation (Add + Remove logic)
+section.addEventListener("click", function (event) {
+    const button = event.target.closest("button[data-action]");
+    if (!button) return;
+
+    const action = button.dataset.action;
+    const index = Number(button.dataset.index);
+
+  // Safety check
+    if (!action || Number.isNaN(index)) return;
+
+    const product = productsData[index];
+    if (!product) return;
+
+  // -----------------------
+  // ADD TO CART
+  // -----------------------
+    if (action === "add-to-cart") {
+    const existingItem = cartData.find(
+        (item) => item.productname === product.productname
+    );
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cartData.push({ ...product, quantity: 1 });
+    }
+    }
+
+  // -----------------------
+  // REMOVE FROM CART
+  // -----------------------
+    if (action === "remove") {
+    const existingItemIndex = cartData.findIndex(
+        (item) => item.productname === product.productname
+    );
+
+    if (existingItemIndex === -1) return;
+
+    if (cartData[existingItemIndex].quantity > 1) {
+        cartData[existingItemIndex].quantity -= 1;
+    } else {
+        cartData.splice(existingItemIndex, 1);
+    }
+    }
+
+    saveCartData();
+    updateCartCount();
+    console.log("Cart Updated:", cartData);
+});

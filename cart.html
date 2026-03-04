@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart | E-Commerce Store</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+  <main>
+    <nav>
+      <h1>E-Commerce Store</h1>
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="index.html#products">Products</a>
+        <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+      </div>
+      <div class="icons">
+        <a href="cart.html" aria-label="Open cart">
+          <i class="ri-shopping-cart-line"></i>
+        </a>
+        <i class="ri-user-3-line"></i>
+      </div>
+    </nav>
+
+    <section class="cart-page">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <a class="continue-btn" href="index.html">Continue Shopping</a>
+      </div>
+
+      <div id="cart-list" class="cart-list"></div>
+
+      <div class="cart-summary">
+        <h3>Total: <span id="cart-total">$0.00</span></h3>
+        <button id="clear-cart-btn" type="button">Clear Cart</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="cart.js"></script>
+</body>
+</html>
